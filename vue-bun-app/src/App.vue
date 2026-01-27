@@ -10,11 +10,21 @@
   </ul>
 
   <h1>Double: {{ double }}</h1>
+
+  <button @click="showChild = !showChild">Toggle Child</button>
+  <ChildComponent v-if="showChild" @sendData="handleDataFromChild"/>
+
+  <h1>Counter from composable: {{ counter }}</h1>
+  <button @click="increment">Increment</button>
+
+  <h1>Input Element</h1>
+  <input type="text" ref="inputElement">
 </template>
 
 <script setup lang="ts">
-  import { reactive, ref, computed, watch, watchEffect, onMounted, onUpdated } from 'vue'
-
+  import { reactive, ref, computed, watch, watchEffect, onMounted, onUpdated, provide } from 'vue'
+  import ChildComponent from '@/components/ChildComponent.vue'
+  import { useCounter } from '@/composables/useCounter'
 
   const count = ref(0)
   const myuser = ref({
@@ -30,6 +40,8 @@
 
   // เก็บ array
   const items = ref([1, 2, 3, 4, 5])
+
+  const showChild = ref(true)
 
   // ตัวอย่างการใช้ computed
   const double = computed(() => count.value * 2)
@@ -50,12 +62,32 @@
     fetch('https://jsonplaceholder.typicode.com/todos/1')
       .then(response => response.json())
       .then(json => console.log(json))
+
+    inputElement.value?.focus()
   })
 
   //ตัวอย่างการใช้ onUpdate
   onUpdated(() => {
     console.log('Component has been updated.')
   })
+
+  const { counter, increment } = useCounter()
+
+  const inputElement = ref<HTMLInputElement | null>(null)
+
+    provide('message', 'Hello from Parent Component')
+  
+    const users = reactive ({
+        name: 'John Doe',
+        age: 30,
+        email: 'johndoe@example.com'
+    })
+    provide('userData', users)
+
+
+    function handleDataFromChild(data: string) {
+        console.log('Received from child:', data);
+    }
 
 </script>
 
