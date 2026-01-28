@@ -21,6 +21,18 @@
                 <li>
                     <NuxtLink to="/users/snowvy?type=admin&page=1">/users/snowvy?type=admin</NuxtLink>
                 </li>
+                <li>
+                    <NuxtLink to="/members/admin/snowvy">/members/admin/snowvy</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink to="/category/technology">/category/technology</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink to="/parent/child">/parent/child</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink to="/parent/sister">/parent/sister</NuxtLink>
+                </li>
             </ul>
         </div>
         <div class="content">
