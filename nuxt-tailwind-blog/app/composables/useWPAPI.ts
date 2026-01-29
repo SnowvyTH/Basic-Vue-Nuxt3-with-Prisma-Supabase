@@ -1,7 +1,9 @@
 import type Post from '@/types/post';
 
 export default () => {
-    const WP_URL = 'https://www.itgenius.co.th/sandbox_api/flutter_news_api';
+    // const WP_URL = 'https://www.itgenius.co.th/sandbox_api/flutter_news_api';
+    const config = useRuntimeConfig();
+    const WP_URL = config.public.wpurlapi;
     const get = async <T>(endpoint: string) => {
         return useFetch<T>(`${WP_URL}/wp-json/wp/v2/${endpoint}`)
     }
@@ -19,8 +21,13 @@ export default () => {
         return get<Post[]>(query);
     }
 
+    const getCategories = async (fields: string = "name,slug,count") => {
+        return get<any[]>(`categories?_fields=${fields}`);
+    }
+
     return {
         get,
-        getPosts
+        getPosts,
+        getCategories
     }
 }

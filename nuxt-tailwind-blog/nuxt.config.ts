@@ -8,6 +8,15 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
+  // config enviroment
+  runtimeConfig: {
+    wpsecret: process.env.WP_SECRET,
+    public: {
+      wpurlapi: process.env.WP_URL_API
+    },
+  },
+
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true }
 })
