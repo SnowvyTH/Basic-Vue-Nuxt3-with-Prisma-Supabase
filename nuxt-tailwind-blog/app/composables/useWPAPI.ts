@@ -1,4 +1,4 @@
-import { type Post } from '~~/app/types/post';
+import type Post from '@/types/post';
 
 export default () => {
     const WP_URL = 'https://www.itgenius.co.th/sandbox_api/flutter_news_api';
