@@ -12,6 +12,16 @@
 
 <script setup lang="ts">
     const { data: categories } = await useWPAPI().getCategories();
+
+    useHead({
+        title: 'Categories - Nuxt Tailwind Blog',
+        meta: [
+            {
+                name: 'description',
+                content: 'A simple blog built with Nuxt 3, Tailwind CSS, and WordPress REST API.'
+            }
+        ]
+    })
 </script>
 
 <style scoped>

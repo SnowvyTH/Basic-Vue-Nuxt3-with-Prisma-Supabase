@@ -12,6 +12,17 @@
 
 <script setup lang="ts">
     const { data: posts, error } = await useWPAPI().getPosts()
+
+    useHead({
+        title: 'Home - Nuxt Tailwind Blog',
+        meta: [
+            {
+                name: 'description',
+                content: 'A simple blog built with Nuxt 3, Tailwind CSS, and WordPress REST API.'
+            }
+        ]
+    })
+
 </script>
 
 <style scoped>

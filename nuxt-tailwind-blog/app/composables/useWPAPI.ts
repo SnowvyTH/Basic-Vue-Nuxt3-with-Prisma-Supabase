@@ -25,9 +25,19 @@ export default () => {
         return get<any[]>(`categories?_fields=${fields}`);
     }
 
+    const getCategory = async (slug: string) => {
+        return get<any[]>(`categories?slug=${slug}`);
+    }
+
+    const getPost = async (slug: string) => {
+        return get<Post[]>(`posts?slug=${slug}&_embed=1`);
+    }
+
     return {
         get,
         getPosts,
-        getCategories
+        getCategories,
+        getCategory,
+        getPost,
     }
 }
