@@ -1,6 +1,6 @@
 export default defineEventHandler((event) => {
     return {
         statusCode: 200,
-        message: 'Test Get Handler',
+        message: 'Test GET Handler',
     }
 })

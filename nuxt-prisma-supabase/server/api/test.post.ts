@@ -1,6 +1,6 @@
 export default defineEventHandler((event) => {
     return {
         statusCode: 201,
-        message: 'Test Post Handler',
+        message: 'Test POST Handler',
     }
 })

@@ -1,14 +1,7 @@
+// GET: http://localhost:3000/api/sample
+
 export default defineEventHandler((event) => {
-
-    if (event.context.auth.role !== 'admin') {
-        throw createError({ statusCode: 403, message: 'Unauthorized' })
-    }
-
     return {
-        message: `Welcome user ${event.context.auth.user}, Your have permission to ${event.context.auth.permissions.join(', ')}`
+        name: 'Sample API from server/api/sample.ts',
     }
-
-    // return {
-    //     name: 'Sample Api from server/sample.ts'
-    // }
 })
