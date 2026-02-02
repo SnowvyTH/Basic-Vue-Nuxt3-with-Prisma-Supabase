@@ -1,7 +1,7 @@
-// GET: http://localhost:3000/api/posts?title=first
+
 import { PrismaClient }  from "@prisma/client"
 
-// Instance of PrismaClient
+
 const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
@@ -10,13 +10,11 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const title = query.title as string
 
-    // Fetch all posts
-    // SELECT id, title, content, published FROM post ORDER BY id DESC
     const posts = await prisma.post.findMany({
         where: {
             title: {
-                contains: title, // ใช้ "contains" เพื่อค้นหาที่มีคำใน title
-                mode: 'insensitive' // ไม่สนใจตัวพิมพ์เล็กหรือใหญ่
+                contains: title, 
+                mode: 'insensitive' 
             }
         },
         select: {
@@ -26,7 +24,7 @@ export default defineEventHandler(async (event) => {
             published: true
         },
         orderBy: {
-            id: 'desc' // เรียงลำดับจากมากไปน้อย
+            id: 'desc' 
         }
     })
 
