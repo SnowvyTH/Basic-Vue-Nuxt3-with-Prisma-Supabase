@@ -1,10 +1,9 @@
-
 export default defineEventHandler((event) => {
 
     if(event.context.auth.role !== 'admin') {
         throw createError(
             {
-                statusCode: 404,
+                statusCode: 403,
                 message: 'Unauthorized'
             }
         )
@@ -14,5 +13,4 @@ export default defineEventHandler((event) => {
     return {
         message: `Welcome user ${event.context.auth.user}, Your have permission to ${event.context.auth.permissions}`
     }
-
 })

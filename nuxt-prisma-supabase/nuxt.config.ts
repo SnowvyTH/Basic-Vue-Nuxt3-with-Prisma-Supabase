@@ -1,12 +1,44 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
+  routeRules: {
+    '/backend/**': { ssr: false }
+  },
 
-  runtimeConfig: {
-    public: {
-      database: process.env.DATABASE_URL
+  css: ['~/assets/css/main.css'],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 
-  compatibilityDate: '2025-07-15',
+  modules: ['@nuxtjs/supabase'],
+  supabase: {
+    redirect: false,
+    cookieOptions: {
+      secure: false,
+    }
+  },
+
+  runtimeConfig: {
+    githubToken: '123456',
+    githubUsername: 'no_name',
+    githubRepo: 'no_repo'
+  },
+
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'en'
+      },
+      bodyAttrs: {
+        class: 'demo'
+      },
+      charset: 'utf-8',
+    }
+  },
+
+  compatibilityDate: '2024-04-03',
   devtools: { enabled: true }
 })

@@ -1,5 +1,4 @@
-// POST
-import { Prisma, PrismaClient } from '@/generated/prisma/client'
+import { PrismaClient }  from "@prisma/client"
 
 type TUser = {
     name: string
@@ -14,10 +13,11 @@ type TPost = {
     author?: TUser
 }
 
-const prisma = new PrismaClient({ log: ['query', 'info'] });
+const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<TPost>(event)
+
     const post = await prisma.post.create({
         data: {
             title: body.title,
@@ -36,4 +36,6 @@ export default defineEventHandler(async (event) => {
             }
         }
     })
+
+    return post
 })

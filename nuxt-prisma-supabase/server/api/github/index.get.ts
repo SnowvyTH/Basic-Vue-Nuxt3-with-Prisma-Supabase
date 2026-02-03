@@ -1,6 +1,5 @@
 export default defineEventHandler((event) => {
 
-    // อ่าน Config จาก Runtime Config
     const config = useRuntimeConfig(event)
 
     const data = {

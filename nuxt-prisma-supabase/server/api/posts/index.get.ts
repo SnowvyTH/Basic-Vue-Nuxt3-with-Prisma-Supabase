@@ -1,20 +1,17 @@
-
 import { PrismaClient }  from "@prisma/client"
-
 
 const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
 
-    // รับ title จาก query string
     const query = getQuery(event)
     const title = query.title as string
 
     const posts = await prisma.post.findMany({
         where: {
             title: {
-                contains: title, 
-                mode: 'insensitive' 
+                contains: title,
+                mode: 'insensitive'
             }
         },
         select: {
@@ -24,7 +21,7 @@ export default defineEventHandler(async (event) => {
             published: true
         },
         orderBy: {
-            id: 'desc' 
+            id: 'desc'
         }
     })
 

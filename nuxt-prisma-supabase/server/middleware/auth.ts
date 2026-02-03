@@ -4,6 +4,4 @@ export default defineEventHandler((event) => {
         role: 'admin',
         permissions: ['read', 'write']
     }
-    
-    console.log(event.context.auth)
 })

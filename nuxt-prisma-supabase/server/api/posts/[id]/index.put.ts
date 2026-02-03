@@ -1,10 +1,7 @@
-// PUT: http://localhost:3000/api/posts/:id
 import { PrismaClient }  from "@prisma/client"
 
-// Instance of PrismaClient
 const prisma = new PrismaClient()
 
-// Type for Post
 type TPost = {
     title: string
     content: string
@@ -13,10 +10,8 @@ type TPost = {
 
 export default defineEventHandler(async (event) => {
 
-    // Get id from params
     const id = getRouterParam(event, 'id')
 
-     // Get the request body
     const body = await readBody<TPost>(event)
 
     if(!id){
